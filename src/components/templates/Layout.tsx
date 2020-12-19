@@ -1,55 +1,86 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import {
+  Container,
+  Divider,
+  Icon,
+  List,
+  Menu,
+  Segment,
+} from "semantic-ui-react"
+import "semantic-ui-css/semantic.min.css"
+import { graphql, useStaticQuery } from "gatsby"
+import Language from "../atoms/Language"
+import { Link } from "gatsby-plugin-intl"
 
-import Header from "../molecules/Header"
-import "./layout.css"
-
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+const FixedMenuLayout = ({ children }) => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+            author
+          }
         }
       }
-    }
-  `)
+    `
+  )
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
+    <div>
+      <Menu fixed="top" inverted>
+        <Container>
+          <Menu.Item header>
+            <Link to="/">{site.siteMetadata.title}</Link>
+          </Menu.Item>
+          <Menu.Item active={true}>
+            <Link to="/blog">Blog</Link>
+          </Menu.Item>
+          <Menu.Item as="a" href="/me">
+            Me
+          </Menu.Item>
+
+          <Menu.Menu position="right">
+            <Language />
+          </Menu.Menu>
+        </Container>
+      </Menu>
+
+      <Container text style={{ marginTop: "7em" }}>
+        {children}
+      </Container>
+
+      <Segment
+        inverted
+        vertical
+        style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
       >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+        <Container textAlign="center">
+          <Icon color="teal" inverted name="github" size="big" />
+          <Icon color="teal" inverted name="twitter" size="big" />
+          <Icon color="teal" inverted name="linkedin" size="big" />
+
+          <Divider inverted section />
+
+          <List horizontal inverted divided link size="small">
+            <List.Item as="a" href="#">
+              Site Map
+            </List.Item>
+            <List.Item as="a" href="#">
+              Contact Us
+            </List.Item>
+            <List.Item as="a" href="#">
+              Terms and Conditions
+            </List.Item>
+            <List.Item as="a" href="#">
+              Privacy Policy
+            </List.Item>
+          </List>
+        </Container>
+      </Segment>
+    </div>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
+export default FixedMenuLayout

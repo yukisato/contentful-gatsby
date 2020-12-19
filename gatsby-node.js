@@ -1,5 +1,18 @@
 const path = require("path")
 
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         "../../theme.config$": path.join(
+//           __dirname,
+//           "src/semantic/theme.config"
+//         ),
+//       },
+//     },
+//   })
+// }
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const result = await graphql(`
@@ -19,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       path: slug,
-      component: path.resolve("./src/pages/BlogPost.tsx"),
+      component: path.join(__dirname, "src/pages/BlogPost.tsx"),
       context: {
         slug: slug,
       },

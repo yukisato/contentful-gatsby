@@ -1,33 +1,33 @@
 import React from "react"
-import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
+import { IntlContextConsumer, changeLocale, useIntl } from "gatsby-plugin-intl"
+import { Dropdown } from "semantic-ui-react"
 
 const languageName = {
   en: "English",
   ja: "日本語",
 }
 
-const Language = () => {
+const Language: React.FC = () => {
+  const intl = useIntl()
+
   return (
-    <div>
-      <IntlContextConsumer>
-        {({ languages, language: currentLocale }) =>
-          languages.map(language => (
-            <a
-              key={language}
-              onClick={() => changeLocale(language)}
-              style={{
-                color: currentLocale === language ? `yellow` : `white`,
-                margin: 10,
-                textDecoration: `underline`,
-                cursor: `pointer`,
-              }}
-            >
-              {languageName[language]}
-            </a>
-          ))
-        }
-      </IntlContextConsumer>
-    </div>
+    <Dropdown item simple text={"lang: " + intl.locale} position>
+      <Dropdown.Menu>
+        <IntlContextConsumer>
+          {({ languages, language: currentLocale }) =>
+            languages.map(language => (
+              <Dropdown.Item
+                key={language}
+                onClick={() => changeLocale(language)}
+                active={currentLocale === language}
+              >
+                {language}
+              </Dropdown.Item>
+            ))
+          }
+        </IntlContextConsumer>
+      </Dropdown.Menu>
+    </Dropdown>
   )
 }
 
