@@ -40,7 +40,7 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
       <Header as="h1">{data.contentfulBlog.title}</Header>
       <Label.Group tag>
         {tags.map(tag => (
-          <Label as="a" href={`/blog/tag/${tag.slug}`}>
+          <Label as="a" href={`/${intl.locale}/blog/tag/${tag.slug}`}>
             {tag.name}
           </Label>
         ))}

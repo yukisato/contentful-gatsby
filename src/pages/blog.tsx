@@ -5,7 +5,7 @@ import SEO from "../components/molecules/SEO"
 import BlogCard, { BlogCardProps } from "../components/atoms/BlogCard"
 import { Header } from "semantic-ui-react"
 
-type BlogDataType = {
+export type BlogDataType = {
   allContentfulBlog: {
     nodes: BlogCardProps[]
   }
