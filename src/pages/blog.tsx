@@ -3,6 +3,7 @@ import { graphql, PageProps } from "gatsby"
 import Layout from "../components/templates/Layout"
 import SEO from "../components/molecules/SEO"
 import BlogCard, { BlogCardProps } from "../components/atoms/BlogCard"
+import { Header } from "semantic-ui-react"
 
 type BlogDataType = {
   allContentfulBlog: {
@@ -16,7 +17,8 @@ const Blog: React.FC<PageProps<BlogDataType>> = ({ data }) => {
   return (
     <Layout>
       <SEO title="Blog" />
-      <h1>Blog ({blogs.length})</h1>
+      <Header as="h1">Blog ({blogs.length})</Header>
+
       {blogs.map(blog => (
         <BlogCard {...blog} />
       ))}
@@ -31,14 +33,15 @@ export const query = graphql`
       sort: { order: DESC, fields: updatedAt }
     ) {
       nodes {
-        updatedAt
         title
+        description
         thumbnail {
           file {
             url
           }
         }
         slug
+        updatedAt
       }
     }
   }

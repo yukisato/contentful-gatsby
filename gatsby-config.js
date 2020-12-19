@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `YukiSato.dev`,
-    description: `技術や海外生活のブログ。`,
-    author: `@yukisato`,
+    title: `Yuki Sato の海外技術放浪記`,
+    description: `主に技術の話と海外生活のことを書いています。`,
+    twitterId: `@yukisato_dev`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

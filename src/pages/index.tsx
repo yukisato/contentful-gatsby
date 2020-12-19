@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => {
       <h1>{intl.formatMessage({ id: "hello" })}</h1>
       <h2>{intl.formatMessage({ id: "posts" })}</h2>
       <ul>
-        {data.allContentfulBlogPost.nodes.map(post => (
+        {data.allContentfulBlog.nodes.map(post => (
           <li key={post.contentful_id}>
             <Link to={`/${post.slug}`}>{post.title}</Link>
           </li>
@@ -27,11 +27,10 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query ContentfulBlogPost($language: String) {
-    allContentfulBlogPost(filter: { node_locale: { eq: $language } }) {
+    allContentfulBlog(filter: { node_locale: { eq: $language } }) {
       nodes {
         title
         slug
-        contentful_id
         node_locale
       }
     }

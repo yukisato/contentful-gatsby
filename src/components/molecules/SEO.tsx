@@ -8,6 +8,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useIntl } from "gatsby-plugin-intl"
 
 export type SEOProps = {
   description?: string
@@ -22,22 +23,10 @@ const SEO: React.FC<SEOProps> = ({
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
-
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const intl = useIntl()
+  const defaultTitle = intl.formatMessage({ id: "blog.title" })
+  const defaultDescription = intl.formatMessage({ id: "blog.description" })
+  const metaDescription = description || defaultDescription
 
   return (
     <Helmet
@@ -69,7 +58,7 @@ const SEO: React.FC<SEOProps> = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: "yukisato" || ``,
         },
         {
           name: `twitter:title`,

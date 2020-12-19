@@ -9,30 +9,19 @@ import {
 } from "semantic-ui-react"
 import "semantic-ui-css/semantic.min.css"
 import { graphql, useStaticQuery } from "gatsby"
-import Language from "../atoms/Language"
-import { Link } from "gatsby-plugin-intl"
+import LanguageDropdown from "../atoms/LanguageDropdown"
+import { Link, useIntl } from "gatsby-plugin-intl"
 
 const FixedMenuLayout = ({ children }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+  const intl = useIntl()
+  const title = intl.formatMessage({ id: "blog.title" })
 
   return (
     <div>
       <Menu fixed="top" inverted>
         <Container>
           <Menu.Item header>
-            <Link to="/">{site.siteMetadata.title}</Link>
+            <Link to="/">{title}</Link>
           </Menu.Item>
           <Menu.Item active={true}>
             <Link to="/blog">Blog</Link>
@@ -42,12 +31,12 @@ const FixedMenuLayout = ({ children }) => {
           </Menu.Item>
 
           <Menu.Menu position="right">
-            <Language />
+            <LanguageDropdown />
           </Menu.Menu>
         </Container>
       </Menu>
 
-      <Container text style={{ marginTop: "7em" }}>
+      <Container text style={{ marginTop: "5em" }}>
         {children}
       </Container>
 
@@ -59,7 +48,13 @@ const FixedMenuLayout = ({ children }) => {
         <Container textAlign="center">
           <Icon color="teal" inverted name="github" size="big" />
           <Icon color="teal" inverted name="twitter" size="big" />
-          <Icon color="teal" inverted name="linkedin" size="big" />
+          <Icon
+            color="teal"
+            inverted
+            name="linkedin"
+            size="big"
+            href="https://www.linkedin.com/in/yuki-sato/"
+          />
 
           <Divider inverted section />
 

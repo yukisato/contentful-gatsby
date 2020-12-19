@@ -2,12 +2,7 @@ import React from "react"
 import { IntlContextConsumer, changeLocale, useIntl } from "gatsby-plugin-intl"
 import { Dropdown } from "semantic-ui-react"
 
-const languageName = {
-  en: "English",
-  ja: "日本語",
-}
-
-const Language: React.FC = () => {
+const LanguageDropdown: React.FC = () => {
   const intl = useIntl()
 
   return (
@@ -31,4 +26,4 @@ const Language: React.FC = () => {
   )
 }
 
-export default Language
+export default LanguageDropdown
