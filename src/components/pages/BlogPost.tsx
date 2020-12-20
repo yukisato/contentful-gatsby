@@ -61,6 +61,7 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
 
           {tags.map(tag => (
             <Label
+              key={tag.slug}
               as="a"
               href={`/${intl.locale}/blog/tag/${tag.slug}`}
               size="large"

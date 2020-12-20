@@ -23,7 +23,7 @@ const Blog: React.FC<PageProps<BlogDataType>> = ({ data }) => {
 
         <Grid stackable columns={2}>
           {blogs.map(blog => (
-            <Grid.Column>
+            <Grid.Column key={blog.slug}>
               <BlogCard {...blog} />
             </Grid.Column>
           ))}

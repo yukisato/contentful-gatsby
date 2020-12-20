@@ -10,13 +10,13 @@ const LanguageDropdown: React.FC = () => {
       <Dropdown.Menu>
         <IntlContextConsumer>
           {({ languages, language: currentLocale }) =>
-            languages.map(language => (
+            languages.map(lang => (
               <Dropdown.Item
-                key={language}
-                onClick={() => changeLocale(language)}
-                active={currentLocale === language}
+                key={lang}
+                onClick={() => changeLocale(lang)}
+                active={currentLocale === lang}
               >
-                {language}
+                {lang}
               </Dropdown.Item>
             ))
           }

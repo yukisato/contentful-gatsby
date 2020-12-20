@@ -29,7 +29,7 @@ const Tag: React.FC<PageProps<BlogDataType, TagPageContext>> = ({
 
         <Grid stackable>
           {blogs.map(blog => (
-            <Grid.Column width={8}>
+            <Grid.Column key={blog.slug} width={8}>
               <BlogCard {...blog} />
             </Grid.Column>
           ))}
