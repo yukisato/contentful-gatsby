@@ -8,18 +8,16 @@ const Footer: React.FC = () => (
     style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
   >
     <Container textAlign="center">
-      <Icon color="teal" inverted name="github" size="big" />
-      <Icon color="teal" inverted name="twitter" size="big" />
-      <Icon
-        color="teal"
-        inverted
-        name="linkedin"
-        size="big"
-        href="https://www.linkedin.com/in/yuki-sato/"
-      />
-
+      <a href="https://github.com/yukisato" target="_blank">
+        <Icon color="teal" inverted name="github" size="big" />
+      </a>
+      <a href="https://twitter.com/yukisato_dev" target="_blank">
+        <Icon color="teal" inverted name="twitter" size="big" />
+      </a>
+      <a href="https://www.linkedin.com/in/yuki-sato/" target="_blank">
+        <Icon color="teal" inverted name="linkedin" size="big" />
+      </a>
       <Divider inverted section />
-
       <List horizontal inverted divided link size="small">
         <List.Item as="a" href="#">
           Site Map
@@ -34,6 +32,7 @@ const Footer: React.FC = () => (
           Privacy Policy
         </List.Item>
       </List>
+      Yuki Sato All Rights Reserved.
     </Container>
   </Segment>
 )
