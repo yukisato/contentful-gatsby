@@ -3,7 +3,7 @@ import { graphql, PageProps } from "gatsby"
 import Layout from "../components/templates/Layout"
 import SEO from "../components/molecules/SEO"
 import BlogCard, { BlogCardProps } from "../components/atoms/BlogCard"
-import { Header } from "semantic-ui-react"
+import { Container, Grid, Header } from "semantic-ui-react"
 
 export type BlogDataType = {
   allContentfulBlog: {
@@ -17,11 +17,18 @@ const Blog: React.FC<PageProps<BlogDataType>> = ({ data }) => {
   return (
     <Layout>
       <SEO title="Blog" />
-      <Header as="h1">Blog ({blogs.length})</Header>
 
-      {blogs.map(blog => (
-        <BlogCard {...blog} />
-      ))}
+      <Container>
+        <Header as="h1">Blog ({blogs.length})</Header>
+
+        <Grid stackable columns={2}>
+          {blogs.map(blog => (
+            <Grid.Column>
+              <BlogCard {...blog} />
+            </Grid.Column>
+          ))}
+        </Grid>
+      </Container>
     </Layout>
   )
 }

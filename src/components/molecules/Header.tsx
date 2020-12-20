@@ -1,44 +1,32 @@
 import { Link } from "gatsby"
-import Language from "../atoms/Language"
-import PropTypes from "prop-types"
+import { useIntl } from "gatsby-plugin-intl"
 import React from "react"
+import { Container, Menu, Segment } from "semantic-ui-react"
+import LanguageDropdown from "../atoms/LanguageDropdown"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-      <Language />
-    </div>
-  </header>
-)
+const Header = () => {
+  const intl = useIntl()
+  const title = intl.formatMessage({ id: "blog.title" })
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+  return (
+    <Menu inverted borderless fixed="top" size="huge">
+      <Container>
+        <Menu.Item header>
+          <Link to="/">{title}</Link>
+        </Menu.Item>
+        <Menu.Item active={true}>
+          <Link to="/blog">Blog</Link>
+        </Menu.Item>
+        <Menu.Item as="a" href="/me">
+          Me
+        </Menu.Item>
 
-Header.defaultProps = {
-  siteTitle: ``,
+        <Menu.Menu position="right">
+          <LanguageDropdown />
+        </Menu.Menu>
+      </Container>
+    </Menu>
+  )
 }
 
 export default Header

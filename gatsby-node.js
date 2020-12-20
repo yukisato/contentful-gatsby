@@ -19,7 +19,7 @@ const createBlogPages = async (graphql, createPage) => {
     createPage({
       path: `/blog/${slug}`,
       component: path.join(__dirname, "src/components/pages/BlogPost.tsx"),
-      context: { slug },
+      context: { slug, nullValue: null },
     })
   })
 }
@@ -44,7 +44,7 @@ const createTagPages = async (graphql, createPage) => {
     createPage({
       path: `/blog/tag/${slug}`,
       component: path.join(__dirname, "src/components/pages/Tag.tsx"),
-      context: { slug, tagName: name },
+      context: { slug, tagName: name, nullValue: null },
     })
   })
 }

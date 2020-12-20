@@ -2,8 +2,17 @@ import React from "react"
 import Layout from "../templates/Layout"
 import { graphql, PageProps } from "gatsby"
 import SEO from "../molecules/SEO"
-import { Container, Header, Icon, Image, Label } from "semantic-ui-react"
+import {
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Label,
+  Segment,
+} from "semantic-ui-react"
 import { useIntl } from "gatsby-plugin-intl"
+import NotFound from "../../pages/404"
 
 type ContentfulBlog = {
   contentfulBlog: {
@@ -25,6 +34,8 @@ type ContentfulBlog = {
 }
 
 const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
+  if (!data.contentfulBlog) return null
+
   const intl = useIntl()
   const { title, updatedAt, description = `` } = data.contentfulBlog
   const thumbnailURL =
@@ -36,32 +47,50 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} description={description} />
-      <Image width="100%" src={thumbnailURL} alt="Title Image" />
-      <Header as="h1">{data.contentfulBlog.title}</Header>
-      <Label.Group tag>
-        {tags.map(tag => (
-          <Label as="a" href={`/${intl.locale}/blog/tag/${tag.slug}`}>
-            {tag.name}
+
+      <Container text>
+        <Image fluid src={thumbnailURL} alt="Title Image" />
+
+        <Header as="h1">{data.contentfulBlog.title}</Header>
+
+        <Label.Group>
+          <Label>
+            <Icon name="clock outline" />
+            <time dateTime={updatedAt}>{intl.formatDate(updatedAt)}</time>
           </Label>
-        ))}
-      </Label.Group>
-      {description}
-      <Label>
-        <Icon name="clock outline" />
-        {intl.formatDate(updatedAt)}
-      </Label>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: data.contentfulBlog.content.childMarkdownRemark.html,
-        }}
-      />
+
+          {tags.map(tag => (
+            <Label
+              as="a"
+              href={`/${intl.locale}/blog/tag/${tag.slug}`}
+              size="large"
+              color="teal"
+              circular
+            >
+              {tag.name}
+            </Label>
+          ))}
+        </Label.Group>
+
+        <Segment>{description}</Segment>
+
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data.contentfulBlog.content.childMarkdownRemark.html,
+          }}
+        />
+      </Container>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($language: String, $slug: String) {
-    contentfulBlog(node_locale: { eq: $language }, slug: { eq: $slug }) {
+  query($language: String, $slug: String, $nullValue: String) {
+    contentfulBlog(
+      title: { ne: $nullValue }
+      node_locale: { eq: $language }
+      slug: { eq: $slug }
+    ) {
       title
       description
       thumbnail {

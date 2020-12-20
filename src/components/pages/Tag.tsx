@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
-import { Header } from "semantic-ui-react"
+import { Container, Grid, Header } from "semantic-ui-react"
 
 import BlogCard from "../atoms/BlogCard"
 import SEO from "../molecules/SEO"
@@ -20,22 +20,30 @@ const Tag: React.FC<PageProps<BlogDataType, TagPageContext>> = ({
 
   return (
     <Layout>
-      <SEO title="Blog" />
-      <Header as="h1">
-        ＃{pageContext.tagName} ({blogs.length})
-      </Header>
+      <SEO title="Tag: {pageContext.tagName}" />
 
-      {blogs.map(blog => (
-        <BlogCard {...blog} />
-      ))}
+      <Container>
+        <Header as="h1">
+          ＃{pageContext.tagName} ({blogs.length})
+        </Header>
+
+        <Grid stackable>
+          {blogs.map(blog => (
+            <Grid.Column width={8}>
+              <BlogCard {...blog} />
+            </Grid.Column>
+          ))}
+        </Grid>
+      </Container>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($language: String, $slug: String) {
+  query($language: String, $slug: String, $nullValue: String) {
     allContentfulBlog(
       filter: {
+        title: { ne: $nullValue }
         node_locale: { eq: $language }
         tags: { elemMatch: { slug: { eq: $slug } } }
       }
