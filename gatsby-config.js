@@ -34,9 +34,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon-96x96.png`, // This path is relative to the root of the site.
       },
     },
+    // To fetch data from Contentful via GraphQL
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -44,6 +45,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    // Use react intl for i18n
     {
       resolve: `gatsby-plugin-intl`,
       options: {
@@ -57,7 +59,28 @@ module.exports = {
         redirect: true,
       },
     },
-    `gatsby-transformer-remark`,
+    // Turn markdown into html
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              prompt: {
+                user: "yuki",
+                host: "localhost",
+                global: true,
+              },
+            },
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
