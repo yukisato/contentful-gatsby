@@ -64,18 +64,14 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          // Code highlighting
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
               classPrefix: "language-",
               inlineCodeMarker: null,
               showLineNumbers: false,
-              noInlineHighlight: false,
-              prompt: {
-                user: "yuki",
-                host: "localhost",
-                global: true,
-              },
+              noInlineHighlight: true,
             },
           },
         ],
