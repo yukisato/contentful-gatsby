@@ -4,7 +4,6 @@ import { graphql, PageProps } from "gatsby"
 import SEO from "../molecules/SEO"
 import {
   Container,
-  Grid,
   Header,
   Icon,
   Image,
@@ -12,7 +11,7 @@ import {
   Segment,
 } from "semantic-ui-react"
 import { useIntl } from "gatsby-plugin-intl"
-import NotFound from "../../pages/404"
+import profile from "../../images/profile.jpg"
 
 type ContentfulBlog = {
   contentfulBlog: {
@@ -34,22 +33,28 @@ type ContentfulBlog = {
 }
 
 const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
-  if (!data.contentfulBlog) return null
+  if (!data.contentfulBlog?.title) return <Layout>404</Layout>
 
   const intl = useIntl()
   const { title, updatedAt, description = `` } = data.contentfulBlog
-  const thumbnailURL =
-    data.contentfulBlog.thumbnail?.file?.url ?? "fallback.jpg"
+  const thumbnailURL: string = data.contentfulBlog.thumbnail?.file?.url
   const tags = data.contentfulBlog.tags ?? []
-
-  if (!data.contentfulBlog.title) return <Layout>404</Layout>
 
   return (
     <Layout>
       <SEO title={title} description={description} />
 
       <Container text>
-        <Image fluid src={thumbnailURL} alt="Title Image" />
+        {thumbnailURL ? (
+          <Image
+            style={{ marginBottom: "2em" }}
+            fluid
+            src={thumbnailURL}
+            alt={title}
+          />
+        ) : (
+          ""
+        )}
 
         <Header as="h1">{data.contentfulBlog.title}</Header>
 
@@ -73,9 +78,20 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
           ))}
         </Label.Group>
 
-        <Segment>{description}</Segment>
+        <Segment>
+          <Image
+            style={{ margin: "0em 1em" }}
+            src={profile}
+            alt="Profile"
+            size="tiny"
+            verticalAlign="middle"
+            avatar
+          />
+          {description}
+        </Segment>
 
         <div
+          style={{ marginTop: "2em" }}
           dangerouslySetInnerHTML={{
             __html: data.contentfulBlog.content.childMarkdownRemark.html,
           }}
