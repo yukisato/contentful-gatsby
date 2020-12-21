@@ -22,17 +22,24 @@ const BlogCard: React.FC<BlogCardProps> = ({
   thumbnail = null,
 }) => {
   const intl = useIntl()
-  const thumbnailURL = thumbnail?.file?.url ?? "fallback.jpg"
+  const thumbnailURL = thumbnail?.file?.url
 
   return (
     <Card href={`/${intl.locale}/blog/${slug}`} fluid>
-      <Image src={thumbnailURL} alt={title} wrapped ui={false} />
+      {thumbnailURL ? (
+        <Image src={thumbnailURL} alt={title} wrapped ui={false} />
+      ) : (
+        ""
+      )}
 
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Meta>
-          <Icon name="clock outline" />
-          {intl.formatDate(updatedAt)}
+          {intl.formatDate(updatedAt, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
         </Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>

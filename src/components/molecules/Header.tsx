@@ -19,7 +19,9 @@ const Header: React.FC = () => {
     <Menu inverted borderless fixed="top" size="huge">
       <Container>
         <Menu.Item header>
-          <Link to="/blog">{intl.formatMessage({ id: "blog.title" })}</Link>
+          <Link to={`/${intl.locale}/blog`}>
+            {intl.formatMessage({ id: "blog.title" })}
+          </Link>
         </Menu.Item>
 
         <Menu.Menu position="right">

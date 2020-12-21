@@ -24,7 +24,7 @@ const Blog: React.FC<PageProps<BlogData>> = ({ data }) => {
   const title =
     intl.locale === "ja"
       ? `すべての記事 (${blogs.length}件)`
-      : `All articles (${blogs.length})`
+      : `All articles (${blogs.filter(blog => blog.title !== null).length})`
 
   return (
     <Layout>
@@ -47,11 +47,15 @@ const Blog: React.FC<PageProps<BlogData>> = ({ data }) => {
           ))}
         </Segment>
         <Grid style={{ marginTop: "2em" }} stackable columns={2}>
-          {blogs.map(blog => (
-            <Grid.Column key={blog.slug}>
-              <BlogCard {...blog} />
-            </Grid.Column>
-          ))}
+          {blogs.map(blog =>
+            blog.title ? (
+              <Grid.Column key={blog.slug}>
+                <BlogCard {...blog} />
+              </Grid.Column>
+            ) : (
+              ""
+            )
+          )}
         </Grid>
       </Container>
     </Layout>

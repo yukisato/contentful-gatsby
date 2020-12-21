@@ -4,5 +4,6 @@
   "blog.title": "カナダのエンジニアブログ",
   "blog.description": "主に技術の話と海外生活のことを書いています。",
   "blog.allArticles": "すべての記事",
-  "blog.taggedArticles": "にタグ付けされた記事"
+  "blog.taggedArticles": "にタグ付けされた記事",
+  "blog.updateDate": "更新日"
 }

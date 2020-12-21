@@ -4,5 +4,6 @@
   "blog.title": "Yuki Sato's Tech Blog",
   "blog.description": "This is Yuki Sato's tech blog.",
   "blog.allArticles": "All articles",
-  "blog.taggedArticles": "Articles with tag: "
+  "blog.taggedArticles": "Articles with tag: ",
+  "blog.updateDate": "Update"
 }

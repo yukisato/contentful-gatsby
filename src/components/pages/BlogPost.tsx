@@ -60,8 +60,14 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
 
         <Label.Group>
           <Label>
-            <Icon name="clock outline" />
-            <time dateTime={updatedAt}>{intl.formatDate(updatedAt)}</time>
+            {intl.formatMessage({ id: "blog.updateDate" }) + ": "}
+            <time dateTime={updatedAt}>
+              {intl.formatDate(updatedAt, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </time>
           </Label>
 
           {tags.map(tag => (
