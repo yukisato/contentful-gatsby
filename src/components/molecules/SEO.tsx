@@ -12,17 +12,11 @@ import { useIntl } from "gatsby-plugin-intl"
 
 export type SEOProps = {
   description?: string
-  lang?: string
   meta?: []
   title: string
 }
 
-const SEO: React.FC<SEOProps> = ({
-  description = ``,
-  lang = `en`,
-  meta = [],
-  title,
-}) => {
+const SEO: React.FC<SEOProps> = ({ description = ``, meta = [], title }) => {
   const intl = useIntl()
   const defaultTitle = intl.formatMessage({ id: "blog.title" })
   const defaultDescription = intl.formatMessage({ id: "blog.description" })

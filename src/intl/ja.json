@@ -1,4 +1,8 @@
 {
-  "blog.title": "Yuki Sato の技術ブログ",
-  "blog.description": "主に技術の話と海外生活のことを書いています。"
+  "profile.name": "佐藤 悠貴",
+  "profile.position": "Webコンサルタント / バックエンドデベロッパー",
+  "blog.title": "カナダのエンジニアブログ",
+  "blog.description": "主に技術の話と海外生活のことを書いています。",
+  "blog.allArticles": "すべての記事",
+  "blog.taggedArticles": "にタグ付けされた記事"
 }

@@ -21,7 +21,7 @@ const FixedMenuLayout = ({ children }) => {
     <div>
       <Header />
 
-      <Container style={{ marginTop: "5em" }} fluid>
+      <Container style={{ marginTop: "7em" }} fluid>
         {children}
       </Container>
 
