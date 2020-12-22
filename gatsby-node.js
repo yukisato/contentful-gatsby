@@ -13,15 +13,17 @@ const createBlogPages = async (graphql, createPage) => {
     }
   `)
 
-  result.data.allContentfulBlog.edges.forEach(edge => {
-    const { slug } = edge.node
+  await Promise.all(
+    result.data.allContentfulBlog.edges.map(edge => {
+      const { slug } = edge.node
 
-    createPage({
-      path: `/blog/${slug}`,
-      component: path.join(__dirname, "src/components/pages/BlogPost.tsx"),
-      context: { slug, nullValue: null },
+      createPage({
+        path: `/blog/${slug}`,
+        component: path.join(__dirname, "src/components/pages/BlogPost.tsx"),
+        context: { slug, nullValue: null },
+      })
     })
-  })
+  )
 }
 
 const createTagPages = async (graphql, createPage) => {
@@ -38,15 +40,17 @@ const createTagPages = async (graphql, createPage) => {
     }
   `)
 
-  result.data.allContentfulTag.edges.forEach(edge => {
-    const { slug, name } = edge.node
+  await Promise.all(
+    result.data.allContentfulTag.edges.map(edge => {
+      const { slug, name } = edge.node
 
-    createPage({
-      path: `/blog/tag/${slug}`,
-      component: path.join(__dirname, "src/components/pages/Tag.tsx"),
-      context: { slug, tagName: name, nullValue: null },
+      createPage({
+        path: `/blog/tag/${slug}`,
+        component: path.join(__dirname, "src/components/pages/Tag.tsx"),
+        context: { slug, tagName: name, nullValue: null },
+      })
     })
-  })
+  )
 }
 
 exports.createPages = async ({ graphql, actions }) => {
