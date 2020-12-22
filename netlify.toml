@@ -1,20 +1,20 @@
 # Top page is now under construction
 [[redirects]]
   from = "/"
-  to = "/ja/blog"
+  to = "/ja/blog/"
   status = 302
   force = true
 
 # Top page is now under construction
 [[redirects]]
   from = "/ja"
-  to = "/ja/blog"
+  to = "/ja/blog/"
   status = 302
   force = true
 
 # Top page is now under construction
 [[redirects]]
   from = "/en"
-  to = "/en/blog"
+  to = "/en/blog/"
   status = 302
   force = true

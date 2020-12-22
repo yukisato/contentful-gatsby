@@ -74,7 +74,7 @@ module.exports = {
 
           const blogIndices = ["ja", "en"].map(locale => {
             return {
-              url: `${siteUrl}/${locale}/blog`,
+              url: `${siteUrl}/${locale}/blog/`,
               changefreq: `daily`,
               priority: 0.7,
             }
@@ -84,7 +84,7 @@ module.exports = {
             .filter(node => node.title !== null)
             .map(({ node_locale, path }) => {
               return {
-                url: `${siteUrl}/${node_locale}/blog/${path}`,
+                url: `${siteUrl}/${node_locale}/blog/${path}/`,
                 changefreq: `daily`,
                 priority: 0.7,
               }
@@ -92,7 +92,7 @@ module.exports = {
 
           const tags = allContentfulTag.nodes.map(({ node_locale, slug }) => {
             return {
-              url: `${siteUrl}/${node_locale}/blog/tag/${slug}`,
+              url: `${siteUrl}/${node_locale}/blog/tag/${slug}/`,
               changefreq: `daily`,
               priority: 0.7,
             }
