@@ -1,16 +1,18 @@
 import React from "react"
-import Layout from "../templates/Layout"
 import { graphql, PageProps } from "gatsby"
-import SEO from "../molecules/SEO"
+import { useIntl } from "gatsby-plugin-intl"
 import {
   Container,
+  Divider,
   Header,
-  Icon,
   Image,
   Label,
   Segment,
 } from "semantic-ui-react"
-import { useIntl } from "gatsby-plugin-intl"
+
+import ProfileCard from "../atoms/ProfileCard"
+import SEO from "../molecules/SEO"
+import Layout from "../templates/Layout"
 import NotFound from "../../pages/404"
 import profile from "../../images/profile.jpg"
 
@@ -85,17 +87,7 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
           ))}
         </Label.Group>
 
-        <Segment>
-          <Image
-            style={{ margin: "0em 1em" }}
-            src={profile}
-            alt="Profile"
-            size="tiny"
-            verticalAlign="middle"
-            avatar
-          />
-          {description}
-        </Segment>
+        <Segment>{description}</Segment>
 
         <div
           style={{ marginTop: "2em" }}
@@ -103,6 +95,10 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
             __html: data.contentfulBlog.content.childMarkdownRemark.html,
           }}
         />
+
+        <Divider inverted section />
+
+        <ProfileCard />
       </Container>
     </Layout>
   )
