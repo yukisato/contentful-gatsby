@@ -5,7 +5,7 @@ const Footer: React.FC = () => (
   <Segment
     inverted
     vertical
-    style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
+    style={{ margin: "2em 0em 0em", padding: "2em 0em" }}
   >
     <Container textAlign="center">
       <a href="https://github.com/yukisato" target="_blank">

@@ -17,16 +17,40 @@ const ProfileCard: React.FC = () => {
           size="mini"
           circular
         />
-        <Card.Header>{intl.formatMessage({ id: "profile.name" })}</Card.Header>
-        <Card.Meta>{intl.formatMessage({ id: "profile.position" })}</Card.Meta>
+        <Card.Header>
+          {intl.locale === "ja" ? "Yuki Sato" : "Yuki Sato"}
+        </Card.Header>
+        <Card.Meta>
+          {intl.locale === "ja" ? "Web Developer" : "Backend Developer"}
+        </Card.Meta>
         <Card.Description>
-          <p>
-            大学卒業後にWeb開発者として8年半勤務。30歳でカナダに渡り現地企業での就職を果たし、3年後に永住権を取得。
-          </p>
-          <p>
-            2020年に現地企業を対象としたWebコンサルティンググループ JP Web
-            Solutions を立ち上げ、フリーランス開発者を束ねて。
-          </p>
+          {intl.locale === "ja" ? (
+            <>
+              <p>バンクーバーでバックエンドデベロッパーをしています。</p>
+              <p>
+                また現地でWebコンサルティンググループ{" "}
+                <a href="https://jpweb.ca/" target="_blank">
+                  JP Web Solutions
+                </a>{" "}
+                の代表として現地企業のビジネスサポートを行なっています。
+              </p>
+            </>
+          ) : (
+            <>
+              <p>Developer who loves techs and challengings in Canada.</p>
+              <p>
+                Also run a local web consulting group{" "}
+                <a href="https://jpweb.ca/" target="_blank">
+                  JP Web Solutions
+                </a>{" "}
+                (*Japanse site)
+              </p>
+              <p>
+                I write articles for outputting my learnings to memorize. I'm
+                glad if they help you as references.
+              </p>
+            </>
+          )}
         </Card.Description>
       </Card.Content>
     </Card>
