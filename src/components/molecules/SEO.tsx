@@ -12,7 +12,7 @@ import { useIntl } from "gatsby-plugin-intl"
 
 export type SEOProps = {
   description?: string
-  meta?: []
+  meta?: { name: string; content: string }[]
   title: string
 }
 

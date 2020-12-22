@@ -10,7 +10,10 @@ const NotFoundPage = () => {
 
   return (
     <Layout>
-      <SEO title="404: Not found" />
+      <SEO
+        title="404: Not found"
+        meta={[{ name: "robots", content: "noindex, nofollow" }]}
+      />
 
       <Container text>
         <Segment placeholder>
