@@ -23,7 +23,7 @@ const NotFoundPage = () => {
             Sorry, there's no page in{" "}
             {intl.locale === "ja" ? "Japanese" : "English"}.
           </Header>
-          <Button color="vk" as="a" href={`/${intl.locale}/blog`}>
+          <Button color="vk" as="a" href={`/${intl.locale}/blog/`}>
             GO BACK
           </Button>
         </Segment>

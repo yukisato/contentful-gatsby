@@ -8,10 +8,10 @@ const Footer: React.FC = () => (
     style={{ margin: "2em 0em 0em", padding: "2em 0em" }}
   >
     <Container textAlign="center">
-      <a href="https://github.com/yukisato" target="_blank">
+      <a href="https://github.com/yukisato/" target="_blank">
         <Icon color="teal" inverted name="github" size="big" />
       </a>
-      <a href="https://twitter.com/yukisato_dev" target="_blank">
+      <a href="https://twitter.com/yukisato_dev/" target="_blank">
         <Icon color="teal" inverted name="twitter" size="big" />
       </a>
       <a href="https://www.linkedin.com/in/yuki-sato/" target="_blank">

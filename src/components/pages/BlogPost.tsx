@@ -77,7 +77,7 @@ const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
             <Label
               key={tag.slug}
               as="a"
-              href={`/${intl.locale}/blog/tag/${tag.slug}`}
+              href={`/${intl.locale}/blog/tag/${tag.slug}/`}
               size="large"
               color="teal"
               circular

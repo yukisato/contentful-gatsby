@@ -25,7 +25,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   const thumbnailURL = thumbnail?.file?.url
 
   return (
-    <Card href={`/${intl.locale}/blog/${slug}`} fluid>
+    <Card href={`/${intl.locale}/blog/${slug}/`} fluid>
       {thumbnailURL ? (
         <Image src={thumbnailURL} alt={title} wrapped ui={false} />
       ) : (
