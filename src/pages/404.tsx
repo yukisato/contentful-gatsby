@@ -2,17 +2,31 @@ import React from "react"
 
 import Layout from "../components/templates/Layout"
 import SEO from "../components/molecules/SEO"
-import { Container } from "semantic-ui-react"
+import { Button, Container, Header, Icon, Segment } from "semantic-ui-react"
+import { useIntl } from "gatsby-plugin-intl"
 
-const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
+const NotFoundPage = () => {
+  const intl = useIntl()
 
-    <Container text>
-      <h1>404: Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Container>
-  </Layout>
-)
+  return (
+    <Layout>
+      <SEO title="404: Not found" />
+
+      <Container text>
+        <Segment placeholder>
+          <Header icon>
+            <h1>404: Not Found</h1>
+            <Icon name="broken chain" />
+            Sorry, there's no page in{" "}
+            {intl.locale === "ja" ? "Japanese" : "English"}.
+          </Header>
+          <Button color="vk" as="a" href={`/${intl.locale}/blog`}>
+            GO BACK
+          </Button>
+        </Segment>
+      </Container>
+    </Layout>
+  )
+}
 
 export default NotFoundPage

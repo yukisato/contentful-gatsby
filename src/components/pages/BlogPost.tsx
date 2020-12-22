@@ -11,6 +11,7 @@ import {
   Segment,
 } from "semantic-ui-react"
 import { useIntl } from "gatsby-plugin-intl"
+import NotFound from "../../pages/404"
 import profile from "../../images/profile.jpg"
 
 type ContentfulBlog = {
@@ -33,7 +34,7 @@ type ContentfulBlog = {
 }
 
 const BlogPost: React.FC<PageProps<ContentfulBlog>> = ({ data }) => {
-  if (!data.contentfulBlog?.title) return <Layout>404</Layout>
+  if (!data.contentfulBlog?.title) return <NotFound />
 
   const intl = useIntl()
   const { title, updatedAt, description = `` } = data.contentfulBlog
